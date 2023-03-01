@@ -58,20 +58,26 @@ def riik_ja_pealinn_näita(fail:dict):
     for line in file:
         k, v=line.strip().split('-')
         sõnastik[k.strip()] = v.strip()
+    file.close()
+    Riigid = list(sõnastik.keys())
+    Pealinnad = list(sõnastik.values())
     RvP=input("Otsime riigi või pealinna: ")
     while RvP not in ["riik","pealinn"]:
         RvP=input("riik või pealinn: ")
     if RvP=="riik":
         OtsimeR=input("Kirjuta riigi nimi: ")
-        while OtsimeR not in [sõnastik.keys()]:
-            OtsimeR=input("Kirjuta riigi nimi sõnastikust: ")
-        tulemus=sõnastik.get(OtsimeR)
-        print(tulemus)
-    file.close()
-    return tulemus
-        #elif RvP=="pealinn":
-        #    OtsimeP=input("Kirjuta pealinna nimi: ")            
-        #    sõnastik.values(k:OtsimeP)
+        while OtsimeR not in Riigid:
+            OtsimeR=input("Kirjuta riigi õigesti: ")
+        num1=Riigid.index(OtsimeR)
+        if OtsimeR == Riigid[num1]:
+            print(OtsimeR,Pealinnad[num1])
+    else:
+        OtsimeP=input("Kirjuta pealinna nimi: ")
+        while OtsimeP not in Pealinnad:
+            OtsimeP=input("Kirjuta riigi õigesti: ")
+        num1=Pealinnad.index(OtsimeP)
+        if OtsimeP == Pealinnad[num1]:
+            print(Riigid[num1],OtsimeP)
           
 
 def paranda(fail:dict):
